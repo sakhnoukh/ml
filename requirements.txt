@@ -1,0 +1,21 @@
+# Core data science libraries
+pandas
+numpy
+scikit-learn
+
+# Visualization
+matplotlib
+seaborn
+plotly
+
+# ML explanation
+shap
+
+# Utilities
+joblib
+
+# Streamlit for UI
+streamlit
+
+# Optional for development
+ipykernel
