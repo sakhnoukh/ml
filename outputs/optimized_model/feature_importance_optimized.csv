@@ -1,0 +1,64 @@
+feature,importance
+Unnamed: 0,0.1364443701359307
+Procesador_Tipo de procesador,0.08726040436559812
+RAM_Memoria RAM,0.08123798715442081
+Alimentación_Vatios-hora,0.07937392451049638
+Procesador_Caché,0.0598682396689743
+Gráfica_Tarjeta gráfica,0.04175431520602914
+graphics_Gráfica_Tarjeta gráfica_x_Gráfica_Tarjeta gráfica_missing,0.04014503663497131
+Ofertas,0.03970195673611645
+Medidas y peso_Profundidad,0.0365317893312339
+Medidas y peso_Ancho,0.03421449336834526
+Medidas y peso_Altura,0.023469396891144415
+processor_Procesador_Frecuencia de reloj_x_Procesador_Frecuencia turbo máx.,0.02130437657291323
+Pantalla_Resolución de pantalla,0.019929202323584496
+Comunicaciones_Versión Bluetooth,0.019526770421444423
+processor_Procesador_Caché_x_Procesador_Frecuencia turbo máx.,0.018753467443367464
+Procesador_Procesador,0.017557706819173284
+processor_Procesador_Caché_x_Procesador_Frecuencia de reloj,0.016274865116006197
+Pantalla_Tamaño de la pantalla,0.014820044486304364
+ssd_ram_Disco duro_Capacidad de memoria SSD_x_Disco duro_Capacidad de memoria SSD,0.014322733355519368
+Procesador_Frecuencia turbo máx.,0.012418951048425204
+Disco duro_Capacidad de memoria SSD,0.011946838632248965
+Procesador_Frecuencia de reloj,0.011660136702500786
+Sistema operativo_Arquitectura bit_missing,0.010425599973307918
+Sonido_Número de altavoces,0.010025678570464408
+Otras características_Fecha de lanzamiento,0.009946968107216042
+Gráfica_Tarjeta gráfica_missing,0.009573227457446166
+ssd_screen_Disco duro_Capacidad de memoria SSD_x_Pantalla_Tamaño de la pantalla,0.007877551914409637
+processor_Procesador_Procesador_x_Procesador_Frecuencia de reloj,0.007159905613412172
+Comunicaciones_Estándar LAN_missing,0.0068886781900707305
+processor_Procesador_Tipo de procesador_x_Procesador_Caché,0.006495036234477001
+processor_Procesador_Procesador_x_Procesador_Caché,0.006302738050049218
+Almacenamiento_Lector óptico_missing,0.006023527494427713
+Título,0.005873382288472798
+Medidas y peso_Peso,0.005868001271811167
+processor_Procesador_Tipo de procesador_x_Procesador_Frecuencia turbo máx.,0.005373128965379355
+processor_Procesador_Tipo de procesador_x_Procesador_Frecuencia de reloj,0.005349166037516283
+Alimentación_Número de celdas,0.004527188260300413
+Comunicaciones_Estándar wifi_missing,0.004207652613572961
+Disco duro_Tipo de disco duro_missing,0.00397584202936444
+processor_Procesador_Procesador_x_Procesador_Frecuencia turbo máx.,0.0038919093281612293
+processor_Procesador_Procesador_x_Procesador_Frecuencia de reloj_missing,0.0033797524218621513
+processor_Procesador_Tipo de procesador_x_Procesador_Frecuencia de reloj_missing,0.003167565470664764
+Comunicaciones_Estándar wifi,0.003153567281129085
+ssd_screen_Disco duro_Tipo de disco duro_missing_x_Pantalla_Tamaño de la pantalla,0.0031420616009196363
+ssd_ram_Disco duro_Tipo de disco duro_missing_x_Disco duro_Capacidad de memoria SSD,0.0028896041767171535
+ssd_ram_Disco duro_Capacidad de memoria SSD_x_RAM_Memoria RAM,0.0028772958026944315
+Sistema operativo_Sistema operativo,0.0028742044233492255
+ram_RAM_Memoria RAM_x_Disco duro_Capacidad de memoria SSD,0.002593871700320072
+storage_Disco duro_Capacidad de memoria SSD_x_Disco duro_Tipo de disco duro_missing,0.0023433768421534822
+processor_Procesador_Frecuencia turbo máx._x_Procesador_Frecuencia de reloj_missing,0.002306473636536568
+processor_Procesador_Caché_x_Procesador_Frecuencia de reloj_missing,0.0020443292169750296
+ssd_screen_Disco duro_Tipo de disco duro_missing_x_Pantalla_Resolución de pantalla,0.001858356852777316
+screen_Pantalla_Resolución de pantalla_x_Pantalla_Formato de imagen,0.0015201441723386314
+screen_Pantalla_Tamaño de la pantalla_x_Pantalla_Resolución de pantalla,0.0014764782042046775
+processor_Procesador_Procesador_x_Procesador_Tipo de procesador,0.001474355351818718
+ssd_screen_Disco duro_Capacidad de memoria SSD_x_Pantalla_Resolución de pantalla,0.0012328309377623392
+Procesador_Frecuencia de reloj_missing,0.0012223285405387392
+ssd_ram_Disco duro_Tipo de disco duro_missing_x_RAM_Memoria RAM,0.0010329058863608085
+Pantalla_Formato de imagen,0.0005885463294694304
+screen_Pantalla_Tamaño de la pantalla_x_Pantalla_Formato de imagen,0.00037956862201261985
+ssd_screen_Disco duro_Tipo de disco duro_missing_x_Pantalla_Formato de imagen,0.00012756581455142092
+ssd_screen_Disco duro_Capacidad de memoria SSD_x_Pantalla_Formato de imagen,1.2627390235750353e-05
+processor_Procesador_Frecuencia de reloj_x_Procesador_Frecuencia de reloj_missing,0.0

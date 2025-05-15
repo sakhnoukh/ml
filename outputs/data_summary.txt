@@ -1,0 +1,14 @@
+COMPUTER DATASET SUMMARY
+Total columns analyzed: 78
+
+TOP 10 MOST COMPLETE NUMERIC COLUMNS:
+  Unnamed: 0: 0.0% missing, mean=499.50
+  Título: 0.4% missing, mean=8771.28
+  Otras características_Fecha de lanzamiento: 7.2% missing, mean=2023.01
+  Sonido_Número de altavoces: 25.3% missing, mean=2.52
+  Disco duro_Número de discos duros (instalados): 29.4% missing, mean=1.00
+  Procesador_Número de núcleos del procesador: 35.3% missing, mean=10.66
+  Alimentación_Número de celdas: 36.8% missing, mean=3.57
+  Gráfica_Tarjeta gráfica: 68.6% missing, mean=2611.36
+  RAM_Número de ranuras de memoria RAM: 74.9% missing, mean=1.73
+  RAM_Extensión de memoria máxima: 76.2% missing, mean=38.74

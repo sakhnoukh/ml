@@ -1,0 +1,32 @@
+,missing_count,missing_percent
+Gráfica_Fabricante de la tarjeta gráfica_Intel,64,0.7936507936507936
+Gráfica_Fabricante de la tarjeta gráfica_NVIDIA,64,0.7936507936507936
+Gráfica_Fabricante de la tarjeta gráfica_Other,64,0.7936507936507936
+Gráfica_Fabricante de la tarjeta gráfica_nan,64,0.7936507936507936
+Sonido_Sistema de altavoces_Dolby Atmos,64,0.7936507936507936
+Sonido_Sistema de altavoces_Harman Kardon,64,0.7936507936507936
+Sonido_Sistema de altavoces_Other,1064,13.194444444444445
+Sonido_Sistema de altavoces_SonicMaster,1064,13.194444444444445
+Sonido_Sistema de altavoces_altavoces estéreo,1064,13.194444444444445
+Sonido_Sistema de altavoces_nan,1064,13.194444444444445
+Procesador_Nombre en clave del procesador_Alder Lake-P,1064,13.194444444444445
+Procesador_Nombre en clave del procesador_Meteor Lake,2064,25.595238095238095
+Procesador_Nombre en clave del procesador_Other,2064,25.595238095238095
+Procesador_Nombre en clave del procesador_Raptor Lake-H,2064,25.595238095238095
+Procesador_Nombre en clave del procesador_Raptor Lake-U,2064,25.595238095238095
+Procesador_Nombre en clave del procesador_nan,3064,37.99603174603175
+Medidas y peso_Color_Other,3064,37.99603174603175
+Medidas y peso_Color_azul,3064,37.99603174603175
+Medidas y peso_Color_gris,3064,37.99603174603175
+Medidas y peso_Color_negro,3064,37.99603174603175
+Medidas y peso_Color_plateado,3064,37.99603174603175
+Medidas y peso_Color_nan,3064,37.99603174603175
+Almacenamiento_Lector óptico_Other,3064,37.99603174603175
+Almacenamiento_Lector óptico_ninguno,3064,37.99603174603175
+Almacenamiento_Lector óptico_nan,3064,37.99603174603175
+"Comunicaciones_Estándar LAN_2,5-Gbit/s-Ethernet",4064,50.39682539682539
+Comunicaciones_Estándar LAN_Gigabit-LAN,4064,50.39682539682539
+Comunicaciones_Estándar LAN_Other,5064,62.797619047619044
+Comunicaciones_Estándar LAN_nan,6064,75.1984126984127
+Tipo_Laptop,7064,87.59920634920636
+Tipo_nan,7064,87.59920634920636

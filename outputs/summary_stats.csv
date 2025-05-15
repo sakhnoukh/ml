@@ -1,0 +1,79 @@
+,count,mean,std,min,25%,50%,75%,max,missing%
+Otras características_Localización,0.0,,,,,,,,100.0
+IA_Procesador IA,0.0,,,,,,,,100.0
+Procesador_Zócalo de CPU,0.0,,,,,,,,100.0
+Procesador_Frecuencia del reloj,0.0,,,,,,,,100.0
+Adecuado para,0.0,,,,,,,,100.0
+Propiedades de la carcasa_Alimentación,0.0,,,,,,,,100.0
+Propiedades de la carcasa_Material de la carcasa,0.0,,,,,,,,100.0
+Medidas y peso_Alto,0.0,,,,,,,,100.0
+Propiedades de la carcasa_Color,0.0,,,,,,,,100.0
+Propiedades de la carcasa_Tipo de caja,0.0,,,,,,,,100.0
+Conectividad_Conexión frontal,0.0,,,,,,,,100.0
+Gráfica_Característica de la tarjeta gráfica,0.0,,,,,,,,100.0
+Almacenamiento_Velocidades de escritura,0.0,,,,,,,,100.0
+Almacenamiento_Velocidades de lectura,0.0,,,,,,,,100.0
+Comunicaciones_Características del Bluetooth,0.0,,,,,,,,100.0
+Otras características_Certificado,0.0,,,,,,,,100.0
+Otras características_Características de la carcasa,0.0,,,,,,,,100.0
+Procesador_Número de hilos de ejecución,0.0,,,,,,,,100.0
+Procesador_TDP,0.0,,,,,,,,100.0
+Procesador_Chipset de la placa base,0.0,,,,,,,,100.0
+Otras características_Modo de sonido,0.0,,,,,,,,100.0
+Sistema operativo_Software incluido,0.0,,,,,,,,100.0
+Otras características_Certificado RoHS,0.0,,,,,,,,100.0
+Procesador_Placa base,0.0,,,,,,,,100.0
+"Propiedades de la carcasa_Bahía externa de 3,5""",0.0,,,,,,,,100.0
+Disco duro_Capacidad disco duro (GB),0.0,,,,,,,,100.0
+Propiedades de la carcasa_Superficie del material,0.0,,,,,,,,100.0
+Almacenamiento_Formato audiovisual compatible,0.0,,,,,,,,100.0
+RAM_Número de ranuras para memoria RAM,0.0,,,,,,,,100.0
+Características especiales,0.0,,,,,,,,100.0
+"Propiedades de la carcasa_Bahía externa de 5,25""",0.0,,,,,,,,100.0
+Disco duro_Capacidad disco duro (TB),0.0,,,,,,,,100.0
+"Propiedades de la carcasa_Bahía interna de 3,5""",0.0,,,,,,,,100.0
+"Propiedades de la carcasa_Bahía interna de 2,5""",0.0,,,,,,,,100.0
+Gráfica_Número de ranuras para PCIe,0.0,,,,,,,,100.0
+Otras características_Artículo incluido,0.0,,,,,,,,100.0
+Procesador_Procesadores compatibles,0.0,,,,,,,,100.0
+Pantalla_Pantalla,0.0,,,,,,,,100.0
+Otras características_Equipamiento,0.0,,,,,,,,100.0
+Otras características_Características especiales,0.0,,,,,,,,100.0
+IA_Característica IA,0.0,,,,,,,,100.0
+Almacenamiento_Lector óptico,0.0,,,,,,,,100.0
+Otras características_Sensor,0.0,,,,,,,,100.0
+Pantalla_Displayglas,0.0,,,,,,,,100.0
+IA_Función IA,0.0,,,,,,,,100.0
+Medidas y peso_Material de la carcasa,0.0,,,,,,,,100.0
+Disco duro_Velocidad de rotación del disco duro,1.0,5.4,,5.4,5.4,5.4,5.4,5.4,99.9
+Otras características_Software incluido,1.0,3.0,,3.0,3.0,3.0,3.0,3.0,99.9
+Sonido_Modo de sonido HDMI,2.0,5.1,0.0,5.1,5.1,5.1,5.1,5.1,99.8
+Otras características_Expansión de hardware,2.0,2.0,0.0,2.0,2.0,2.0,2.0,2.0,99.8
+Procesador_Chipset,6.0,770.0,0.0,770.0,770.0,770.0,770.0,770.0,99.4
+Comunicaciones_Transmisión de datos,6.0,4.333333333333333,0.5163977794943223,4.0,4.0,4.0,4.75,5.0,99.4
+Conectividad_Conexión,7.0,2.4285714285714284,1.2392393980641052,1.0,1.5,2.0,3.5,4.0,99.3
+Disco duro_Capacidad del disco duro,7.0,146.57142857142858,114.74298401624554,1.0,64.5,128.0,256.0,256.0,99.3
+Pantalla_Propiedades de la pantalla,14.0,10.0,0.0,10.0,10.0,10.0,10.0,10.0,98.6
+Sonido_Chip de sonido,15.0,3284.6,15.35205895916617,3232.0,3287.0,3287.0,3287.0,3306.0,98.5
+Otras características_Certificación,22.0,773.4090909090909,171.6265766662664,5.0,810.0,810.0,810.0,810.0,97.8
+Alimentación_Capacidad de la batería,25.0,6483.04,2661.565211174307,3200.0,4100.0,5550.0,9360.0,10336.0,97.5
+Comunicaciones_Estándar LAN,29.0,2.0,0.0,2.0,2.0,2.0,2.0,2.0,97.1
+Gráfica_GPU,32.0,12.375,7.508060185023525,8.0,10.0,10.0,10.0,40.0,96.8
+Pantalla_Tecnología de la pantalla,49.0,2.851020408163265,0.30353641254633124,2.0,2.8,2.8,3.0,4.0,95.1
+Conectividad_Lector de tarjetas,58.0,3.6551724137931036,0.5789198695553653,2.0,3.0,4.0,4.0,4.0,94.19999999999999
+Pantalla_Tiempo de reacción,61.0,1.360655737704918,2.11370753957153,0.0,0.0,0.0,3.0,7.0,93.89999999999999
+Alimentación_Intensidad de corriente,136.0,5.617647058823529,3.866396204198832,2.0,3.0,3.0,9.0,16.0,86.4
+Alimentación_Voltaje de salida,144.0,22.208333333333332,23.591474992202,11.0,19.0,20.0,20.0,220.0,85.6
+Cámara_Webcam,163.0,3.6447852760736192,3.4882899941430696,0.3,0.9,2.0,5.0,13.0,83.7
+RAM_Ranura de memoria RAM instaladas,210.0,1.5285714285714285,0.6997216515232251,0.0,1.0,2.0,2.0,4.0,79.0
+RAM_Configuración de memoria RAM,224.0,1.6830357142857142,0.4943425933658064,1.0,1.0,2.0,2.0,4.0,77.60000000000001
+RAM_Extensión de memoria máxima,238.0,38.739495798319325,24.68415237855377,4.0,16.0,32.0,64.0,96.0,76.2
+RAM_Número de ranuras de memoria RAM,251.0,1.7290836653386454,0.5781961232766193,0.0,2.0,2.0,2.0,4.0,74.9
+Gráfica_Tarjeta gráfica,314.0,2611.3630573248406,1798.7341454242824,2.0,610.0,4050.0,4060.0,7600.0,68.60000000000001
+Alimentación_Número de celdas,632.0,3.569620253164557,0.9445285836972706,2.0,3.0,3.0,4.0,8.0,36.8
+Procesador_Número de núcleos del procesador,647.0,10.659969088098919,4.470265227754759,1.0,8.0,10.0,14.0,24.0,35.3
+Disco duro_Número de discos duros (instalados),706.0,1.0028328611898016,0.0531868681817165,1.0,1.0,1.0,1.0,2.0,29.4
+Sonido_Número de altavoces,747.0,2.5247657295850066,1.1544829477645793,2.0,2.0,2.0,2.0,6.0,25.3
+Otras características_Fecha de lanzamiento,928.0,2023.0064655172414,1.3747457181356917,2015.0,2023.0,2023.0,2024.0,2025.0,7.199999999999999
+Título,996.0,8771.275135699047,107514.71803450955,0.00390625,13.0,15.0,16.0,1435648.0,0.4
+Unnamed: 0,1000.0,499.5,288.8194360957494,0.0,249.75,499.5,749.25,999.0,0.0

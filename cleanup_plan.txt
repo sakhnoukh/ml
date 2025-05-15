@@ -1,0 +1,28 @@
+# Project Cleanup Plan
+
+## Keep (Essential for Final Project)
+- data/train_set.csv
+- data/test_set.csv
+- data/db_computers_2025_raw.csv
+- models/optimized_model.joblib
+- models/feature_scaler.joblib
+- src/model_optimization_simple.py (final model optimizer)
+- src/preprocessing.py (essential data processing)
+
+## Archive (Move to archive/ directory)
+- src/models_enhanced.py (superseded by model_optimization_simple.py)
+- src/hardware_model.py (superseded by model_optimization_simple.py)
+- src/model_optimizer.py (superseded by model_optimization_simple.py)
+- src/feature_engineering_advanced.py (too complex, not used in final)
+- src/model_prep.py (superseded by model_prep_simple.py)
+- models/hardware_model_numeric_only.joblib (superseded by optimized model)
+- models/pca_transformer.joblib (not used in final model)
+- models/rf_model.joblib (superseded by optimized model)
+- models/price_model.joblib (superseded by optimized model)
+
+## Consolidate Final Scripts
+Create a concise set of core scripts needed for the application:
+1. preprocessing.py - Data cleaning and preparation
+2. feature_engineering.py - Feature engineering (simplified from previous versions)
+3. model.py - Model training, evaluation and prediction
+4. app.py - Streamlit UI application

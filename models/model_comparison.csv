@@ -1,0 +1,2 @@
+model,best_params,cv_rmse,cv_r2
+rf,"{'max_depth': None, 'min_samples_leaf': 2, 'min_samples_split': 2, 'n_estimators': 200}",0.4571408575319348,0.35215735000597653

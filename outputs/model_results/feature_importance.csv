@@ -1,0 +1,115 @@
+feature,importance
+Unnamed: 0,0.08712954398845495
+Procesador_Tipo de procesador,0.08331892077944933
+RAM_Memoria RAM,0.08121964618342815
+Procesador_Caché,0.0802272721401748
+Alimentación_Vatios-hora,0.06980890490830645
+Gráfica_Tarjeta gráfica,0.06971347072206825
+Título,0.05279021233207073
+Medidas y peso_Profundidad,0.02811988569346625
+Ofertas,0.02727594851735056
+Medidas y peso_Ancho,0.022602234391710198
+Procesador_Frecuencia turbo máx.,0.021728548405400196
+Pantalla_Resolución de pantalla,0.018224199740292175
+Disco duro_Capacidad de memoria SSD,0.017908817289747574
+Medidas y peso_Altura,0.01787614193196083
+Procesador_Procesador,0.01765207472937641
+Pantalla_Tamaño de la pantalla,0.01496557707391698
+Comunicaciones_Versión Bluetooth,0.014443100688692584
+Procesador_Frecuencia de reloj,0.014260374924381286
+Tipo de producto_Other,0.009183148631486672
+"Otras características_Equipamiento_USB-C, altavoces estéreo, webcam",0.007917064831583569
+Otras características_Fecha de lanzamiento,0.007597263504933794
+Sistema operativo_Arquitectura bit_missing,0.006317659895090739
+Medidas y peso_Peso,0.005814963613604344
+Gráfica_Tarjeta gráfica_missing,0.004859013700174388
+Sonido_Número de altavoces,0.004640547904435926
+Tipo de producto_Portátil multimedia,0.004636050732166949
+Procesador_Nombre en clave del procesador_Other,0.004147516470552805
+Disco duro_Tipo de disco duro_missing,0.004125303334855788
+Comunicaciones_Conectividad_Other,0.004028335629200338
+Gráfica_Fabricante de la tarjeta gráfica_nan,0.003964901780540456
+Comunicaciones_Estándar wifi_missing,0.003935271637310798
+Serie_ASUS Vivobook,0.00392445695613399
+Alimentación_Batería_Other,0.003775261459103923
+Serie_Other,0.0037616714805533426
+Serie_Lenovo ThinkPad,0.0036285818551143054
+Tipo de producto_Portátil gaming,0.0036219447504645974
+Almacenamiento_Lector óptico_missing,0.0036053923016567783
+Cámara_Función de la cámara_nan,0.0035916294377907484
+Conectividad_Lector de tarjetas_Other,0.0035857720078925144
+"Comunicaciones_Estándar LAN_2,5-Gbit/s-Ethernet",0.003555258200542642
+"Comunicaciones_Conectividad_wifi, Bluetooth",0.0035165003523971823
+Otras características_Equipamiento_Other,0.003450700999234837
+Gráfica_Fabricante de la tarjeta gráfica_NVIDIA,0.0033007223981779024
+Tipo de producto_Portátil profesional,0.0032722025706000118
+Disco duro_Tipo de disco duro_Other,0.0031843043317646346
+Gráfica_Fabricante de la tarjeta gráfica_Other,0.003175001194496289
+Sonido_Sistema de altavoces_Other,0.0031473626369110798
+Serie_nan,0.0031145181611198737
+Comunicaciones_Estándar LAN_missing,0.0030928974793508128
+Medidas y peso_Color_Other,0.0030852121809637366
+Procesador_Nombre en clave del procesador_Meteor Lake,0.0030388189014033825
+"Otras características_Equipamiento_USB-C, altavoces estéreo, lector de tarjetas, webcam",0.0029708153716696225
+Procesador_Nombre en clave del procesador_Alder Lake-P,0.002789903001014227
+Disco duro_Tipo de disco duro_SSD,0.0027785082162909125
+"Otras características_Equipamiento_USB-C, altavoces estéreo, webcam, lector de tarjetas",0.002777796527986097
+Procesador_Nombre en clave del procesador_nan,0.0027749098698288104
+Disco duro_Tipo de disco duro_nan,0.002697262445154966
+Sonido_Sistema de altavoces_SonicMaster,0.002678651964262851
+Conectividad_Lector de tarjetas_4 en 1,0.002611581410491769
+Conectividad_Lector de tarjetas_integrado,0.0025790405243175645
+Alimentación_Número de celdas,0.002569715233828177
+Sonido_Sistema de altavoces_Harman Kardon,0.002565197824494112
+Comunicaciones_Conectividad_nan,0.002561892603702789
+Sonido_Sistema de altavoces_altavoces estéreo,0.0024333311731886556
+Conectividad_Lector de tarjetas_nan,0.0024221726471304623
+Alimentación_Batería_ión-litio,0.002410239822027866
+"Otras características_Equipamiento_lector de tarjetas, webcam, altavoces estéreo, USB-C",0.0022910303724285666
+Comunicaciones_Estándar LAN_Gigabit-LAN,0.0022718230317933462
+Procesador_Frecuencia de reloj_missing,0.0022297326889424082
+Sistema operativo_Sistema operativo,0.0022258389278533414
+Medidas y peso_Color_nan,0.0022060168552614913
+Procesador_Nombre en clave del procesador_Raptor Lake-H,0.002196843720928867
+Almacenamiento_Lector óptico_Other,0.002186617343570893
+Procesador_Nombre en clave del procesador_Raptor Lake-U,0.002138467921621518
+Otras características_Equipamiento_nan,0.0021369366758205066
+Almacenamiento_Lector óptico_ninguno,0.0021212333347083046
+Medidas y peso_Color_azul,0.0021206417522352103
+"Otras características_Equipamiento_webcam, altavoces estéreo, USB-C",0.0021003109711410285
+Sonido_Sistema de altavoces_Dolby Atmos,0.002081915570542603
+Procesador_Fabricante del procesador_Apple,0.0020294756502477634
+Cámara_Función de la cámara_Other,0.0020250653464744302
+"Comunicaciones_Conectividad_wifi, Bluetooth, LAN",0.0019967591048968493
+Procesador_Fabricante del procesador_nan,0.0019893389028801055
+Sonido_Sistema de altavoces_nan,0.0019570908552846637
+Alimentación_Batería_polímero de litio,0.0019383474859526182
+Medidas y peso_Diseño_nan,0.001927252659559384
+Medidas y peso_Diseño_con tapa,0.00192307541766241
+Procesador_Fabricante del procesador_Intel,0.0018224032157158994
+Pantalla_Formato de imagen,0.0018083995434234241
+Serie_Apple MacBook Air,0.0017781052596606032
+Procesador_Fabricante del procesador_Other,0.0017771844759694557
+Disco duro_Tipo de disco duro_PCIe SSD,0.0017647349865256875
+Medidas y peso_Color_negro,0.0017457958300955713
+Medidas y peso_Color_gris,0.001730204258576119
+Comunicaciones_Estándar LAN_Other,0.0017267768773124802
+Medidas y peso_Color_plateado,0.001724364839879442
+"Comunicaciones_Conectividad_LAN, wifi, Bluetooth",0.001722726403293145
+Gráfica_Fabricante de la tarjeta gráfica_Apple,0.0017086477847905414
+Alimentación_Batería_nan,0.001705658217849918
+Gráfica_Fabricante de la tarjeta gráfica_Intel,0.0016964180205405299
+Cámara_Función de la cámara_compatible con HD,0.0016909633363397063
+"Comunicaciones_Conectividad_Bluetooth, wifi",0.0016664276888916118
+Gráfica_Fabricante de la tarjeta gráfica_AMD,0.00163282835581064
+Tipo de producto_Portátil convertible,0.001591885406355315
+Conectividad_Lector de tarjetas_ninguno,0.0015468504091594836
+Procesador_Fabricante del procesador_AMD,0.0015098078106459147
+Tipo de producto_nan,0.001406793070987554
+"Otras características_Equipamiento_micrófono integrado, USB-C, Touchpad multitáctil, altavoces estéreo, Touch ID, webcam, Force Touch Trackpad",0.0009458403406733016
+Medidas y peso_Diseño_convertible,0.0009419228150357532
+Almacenamiento_Lector óptico_nan,0.0009344224462015577
+Comunicaciones_Estándar wifi,0.0008458796192143836
+Comunicaciones_Estándar LAN_nan,0.0
+Tipo_Laptop,0.0
+Tipo_nan,0.0

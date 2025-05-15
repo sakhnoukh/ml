@@ -1,0 +1,33 @@
+feature,importance
+Unnamed: 0,0.1109186412326612
+Gráfica_Tarjeta gráfica,0.078727186936197
+Título,0.0717443816705149
+Procesador_Caché,0.07001471796667498
+Alimentación_Vatios-hora,0.05837875667709765
+RAM_Memoria RAM,0.05243642492611385
+Procesador_Tipo de procesador,0.050775318090523505
+Ofertas,0.04534082341254702
+Medidas y peso_Profundidad,0.042411073999002215
+Procesador_Procesador,0.040067865720000116
+Medidas y peso_Ancho,0.037734216907187694
+Disco duro_Capacidad de memoria SSD,0.03574111119426187
+Procesador_Frecuencia turbo máx.,0.034336944124319625
+Medidas y peso_Altura,0.03069325549669782
+Procesador_Frecuencia de reloj,0.027823309007992365
+Comunicaciones_Versión Bluetooth,0.024294793638378356
+Pantalla_Resolución de pantalla,0.023218749194356767
+Pantalla_Tamaño de la pantalla,0.019824117514530126
+Otras características_Fecha de lanzamiento,0.01581696900746548
+Gráfica_Tarjeta gráfica_missing,0.015335754634513043
+Alimentación_Número de celdas,0.01502123074952664
+Medidas y peso_Peso,0.013318319597858667
+Sistema operativo_Arquitectura bit_missing,0.01302287106951276
+Almacenamiento_Lector óptico_missing,0.011903425132828802
+Comunicaciones_Estándar LAN_missing,0.011057161326412476
+Sonido_Número de altavoces,0.011030606025733374
+Comunicaciones_Estándar wifi_missing,0.010517489634744482
+Disco duro_Tipo de disco duro_missing,0.009915527454899091
+Procesador_Frecuencia de reloj_missing,0.00746176446077061
+Sistema operativo_Sistema operativo,0.005149853188380639
+Comunicaciones_Estándar wifi,0.0030151944890957857
+Pantalla_Formato de imagen,0.0029521455192012473
