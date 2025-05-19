@@ -18,6 +18,9 @@ from market_segmentation import render_market_segmentation_tab, identify_user_co
 # Import the price breakdown module
 from price_breakdown import display_price_breakdown
 
+# Import the similarity search module
+from similarity_search import render_similarity_search_tab
+
 # Set page config
 st.set_page_config(
     page_title="ML Marketplace: Computer Configuration",
@@ -393,7 +396,35 @@ def main():
                     value=st.session_state.battery_life,
                     help="Estimated battery life in hours.",
                     key="battery_life"
-                )
+                )            
+        
+            # Add the similarity search section after all the configuration expanders
+            st.markdown("---")
+            st.subheader("🔍 Similar Computers to Consider")
+            
+            # Display a brief explanation of the similarity search functionality
+            st.markdown(
+                """These are comparable commercial computer models that match your configuration. 
+                Similarity is computed using the k-Nearest Neighbors algorithm based on hardware specifications."""
+            )
+            
+            # Create a user_config dictionary based on the current configuration
+            user_config = {
+                'cpu_brand': cpu_brand,
+                'cpu_rating': cpu_rating,
+                'ram': ram,
+                'storage': ssd_capacity,
+                'screen_size': screen_size,
+                'screen_resolution': screen_resolution,
+                'graphics_card': graphics_card,
+                'has_touchscreen': touchscreen,
+                'weight': 2.0,  # Default weight in kg
+                'battery_life': battery_life
+            }
+            
+            # Render the similarity search section with the current configuration
+            from similarity_search import render_similar_computers
+            render_similar_computers(user_config)
         
         # Right Column - Price and Prediction
         with col2:
@@ -601,8 +632,7 @@ def main():
         if not st.session_state.get('feedback_submitted', False):
             st.warning("You must leave a rating on the previous page before accessing this section.")
             st.stop()
-        import market_segmentation
-        market_segmentation.render_market_segmentation_tab()
+        render_market_segmentation_tab()
 
 # Define RAM and SSD options (to be used in the main function)
 ram_options = [4, 8, 16, 32, 64]
