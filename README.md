@@ -15,6 +15,19 @@ This project aims to predict computer prices based on their hardware specificati
 *   **Machine Learning Model**:
     *   Predicts price based on a hybrid approach, combining a rule-based system with model predictions.
     *   Handles various hardware components and their impact on pricing.
+*   **Market Segmentation and Analysis**:
+    *   Identifies which market segment the user's configuration belongs to.
+    *   Provides detailed insights about different market segments and their characteristics.
+    *   Visualizes segment distribution and market share.
+*   **Price Breakdown**:
+    *   Detailed visualization of how different components contribute to the final price.
+    *   Percentage-based breakdown of component costs.
+    *   Cost optimization recommendations based on user configuration.
+*   **Similarity Search**:
+    *   Finds and presents similar computer configurations based on the user's inputs.
+    *   Explains why each alternative is similar to the user's configuration.
+    *   Provides visual comparison between user configuration and alternatives.
+    *   Collects user feedback on the relevance and helpfulness of alternatives.
 *   **Data Processing & Feature Engineering**:
     *   Scripts for cleaning raw data (`src/preprocessing.py`, `src/data_cleaner.py`).
     *   Feature engineering to prepare data for modeling (`src/feature_engineering.py`, `src/feature_builder.py`).

@@ -1,0 +1,52 @@
+brand,model,cpu_brand,cpu_rating,ram,storage,screen_size,screen_resolution,gpu_rating,has_dedicated_gpu,graphics_card,is_touchscreen,battery_life,weight,price
+Dell,XPS 13,Intel,8,16,512,13.3,FHD (1920 x 1080),0,0,Integrated Graphics,0,10,1.2,1299
+Dell,Inspiron 15,Intel,5,8,256,15.6,FHD (1920 x 1080),0,0,Integrated Graphics,0,6,1.8,699
+Dell,G15 Gaming,Intel,7,16,512,15.6,FHD (1920 x 1080),7,1,NVIDIA RTX 3050,0,5,2.4,999
+HP,Pavilion 15,Intel,6,16,512,15.6,FHD (1920 x 1080),0,0,Integrated Graphics,0,7,1.7,849
+HP,Envy x360,Intel,7,16,512,15.6,FHD (1920 x 1080),0,0,Integrated Graphics,1,8,1.8,999
+HP,Spectre x360,Intel,9,16,1024,13.5,QHD (2560 x 1440),0,0,Integrated Graphics,1,12,1.3,1499
+HP,Omen 15,Intel,8,32,1024,15.6,QHD (2560 x 1440),8,1,NVIDIA RTX 3060,0,6,2.5,1799
+Lenovo,ThinkPad X1 Carbon,Intel,8,16,512,14.0,FHD (1920 x 1080),0,0,Integrated Graphics,0,15,1.1,1499
+Lenovo,IdeaPad 3,Intel,4,8,256,15.6,HD (1366 x 768),0,0,Integrated Graphics,0,7,1.9,499
+Lenovo,Legion 5,AMD,7,16,512,15.6,FHD (1920 x 1080),7,1,NVIDIA RTX 3050 Ti,0,7,2.4,1099
+Lenovo,Yoga 7i,Intel,7,16,512,14.0,FHD (1920 x 1080),0,0,Integrated Graphics,1,10,1.5,1149
+Asus,ZenBook 14,Intel,8,16,512,14.0,FHD (1920 x 1080),0,0,Integrated Graphics,0,12,1.2,1099
+Asus,VivoBook 15,Intel,6,8,512,15.6,FHD (1920 x 1080),0,0,Integrated Graphics,0,8,1.8,649
+Asus,ROG Strix G15,AMD,9,16,1024,15.6,QHD (2560 x 1440),9,1,NVIDIA RTX 3070,0,8,2.3,1899
+Asus,TUF Gaming F17,Intel,7,16,512,17.3,FHD (1920 x 1080),6,1,NVIDIA RTX 3050,0,6,2.6,999
+Apple,MacBook Air M1,Apple,8,8,256,13.3,Retina (2560 x 1600),5,0,Apple M1 Graphics,0,18,1.3,999
+Apple,MacBook Air M2,Apple,9,16,512,13.6,Retina (2560 x 1600),6,0,Apple M2 Graphics,0,18,1.2,1499
+Apple,MacBook Pro 14,Apple,9,16,1024,14.2,Retina (3024 x 1964),8,0,Apple M2 Pro Graphics,0,18,1.6,1999
+Apple,MacBook Pro 16,Apple,10,32,1024,16.2,Retina (3456 x 2234),9,0,Apple M2 Max Graphics,0,22,2.2,2499
+Acer,Aspire 5,Intel,5,8,256,15.6,FHD (1920 x 1080),0,0,Integrated Graphics,0,8,1.8,549
+Acer,Swift 3,Intel,7,16,512,14.0,FHD (1920 x 1080),0,0,Integrated Graphics,0,12,1.2,799
+Acer,Nitro 5,Intel,7,16,512,15.6,FHD (1920 x 1080),7,1,NVIDIA RTX 3050,0,6,2.5,899
+Acer,Predator Helios 300,Intel,8,16,1024,15.6,FHD (1920 x 1080),8,1,NVIDIA RTX 3060,0,5,2.6,1399
+Microsoft,Surface Laptop 4,Intel,7,16,512,13.5,QHD (2256 x 1504),0,0,Integrated Graphics,1,17,1.3,1299
+Microsoft,Surface Pro 9,Intel,8,16,256,13.0,QHD (2880 x 1920),0,0,Integrated Graphics,1,15,0.9,1299
+MSI,Modern 14,Intel,6,8,512,14.0,FHD (1920 x 1080),0,0,Integrated Graphics,0,9,1.3,699
+MSI,GP66 Leopard,Intel,9,32,1024,15.6,FHD (1920 x 1080),9,1,NVIDIA RTX 3070,0,5,2.9,1999
+MSI,GS66 Stealth,Intel,9,32,2048,15.6,QHD (2560 x 1440),9,1,NVIDIA RTX 3080,0,7,2.1,2499
+Razer,Blade 15,Intel,9,16,1024,15.6,QHD (2560 x 1440),9,1,NVIDIA RTX 3070,0,6,2.0,2299
+Razer,Blade 14,AMD,9,16,1024,14.0,QHD (2560 x 1440),9,1,NVIDIA RTX 3070,0,8,1.8,2199
+Dell,Latitude 7420,Intel,7,16,512,14.0,FHD (1920 x 1080),0,0,Integrated Graphics,0,10,1.4,1599
+Dell,Precision 5560,Intel,9,32,1024,15.6,QHD (2560 x 1440),7,1,NVIDIA RTX A2000,0,9,1.8,2499
+HP,EliteBook 840 G8,Intel,7,16,512,14.0,FHD (1920 x 1080),0,0,Integrated Graphics,0,12,1.3,1599
+HP,ZBook Fury 15,Intel,9,32,2048,15.6,4K (3840 x 2160),8,1,NVIDIA RTX A3000,0,8,2.5,2799
+Lenovo,ThinkPad P15,Intel,9,64,2048,15.6,4K (3840 x 2160),9,1,NVIDIA RTX A5000,0,8,2.9,3499
+Asus,ProArt StudioBook Pro 16,Intel,10,64,2048,16.0,4K (3840 x 2160),9,1,NVIDIA RTX A5000,0,8,2.4,3499
+Dell,Alienware x15,Intel,9,32,1024,15.6,QHD (2560 x 1440),9,1,NVIDIA RTX 3080,0,6,2.3,2699
+Dell,Alienware x17,Intel,10,64,2048,17.3,4K (3840 x 2160),10,1,NVIDIA RTX 3080 Ti,0,4,3.0,3499
+HP,Victus 15,Intel,6,16,512,15.6,FHD (1920 x 1080),6,1,NVIDIA RTX 3050,0,6,2.3,799
+Lenovo,IdeaPad Gaming 3,AMD,6,8,512,15.6,FHD (1920 x 1080),5,1,NVIDIA GTX 1650,0,5,2.2,699
+Asus,TUF Dash F15,Intel,8,16,512,15.6,FHD (1920 x 1080),7,1,NVIDIA RTX 3060,0,8,2.0,1299
+Acer,TravelMate P6,Intel,7,16,512,14.0,FHD (1920 x 1080),0,0,Integrated Graphics,0,14,1.1,1199
+Samsung,Galaxy Book Pro,Intel,7,16,512,15.6,FHD (1920 x 1080),0,0,Integrated Graphics,1,20,1.1,1199
+Samsung,Galaxy Book Flex2 Alpha,Intel,7,16,512,13.3,FHD (1920 x 1080),0,0,Integrated Graphics,1,18,1.2,1099
+LG,Gram 17,Intel,8,16,1024,17.0,QHD (2560 x 1440),0,0,Integrated Graphics,0,19,1.3,1799
+Dell,XPS 15,Intel,8,32,1024,15.6,4K (3840 x 2160),6,1,NVIDIA GTX 1650 Ti,0,10,1.8,1999
+Lenovo,ThinkBook 14s,Intel,6,8,256,14.0,FHD (1920 x 1080),0,0,Integrated Graphics,0,10,1.4,749
+HP,ProBook 450 G8,Intel,6,16,512,15.6,FHD (1920 x 1080),0,0,Integrated Graphics,0,8,1.7,899
+Acer,Chromebook Spin 713,Intel,5,8,128,13.5,QHD (2256 x 1504),0,0,Integrated Graphics,1,10,1.4,629
+Dell,Chromebook 13,Intel,4,8,128,13.3,FHD (1920 x 1080),0,0,Integrated Graphics,1,12,1.5,499
+Apple,iMac 24,Apple,8,16,512,24.0,4.5K (4480 x 2520),6,0,Apple M1 Graphics,0,0,4.5,1699

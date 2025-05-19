@@ -18,6 +18,9 @@ from market_segmentation import render_market_segmentation_tab, identify_user_co
 # Import the price breakdown module
 from price_breakdown import display_price_breakdown
 
+# Import the similarity search module
+from similarity_search import render_similarity_search_tab
+
 # Set page config
 st.set_page_config(
     page_title="ML Marketplace: Computer Configuration",
@@ -240,7 +243,7 @@ def main():
     )
     
     # Create tabs for different app sections
-    tab1, tab2 = st.tabs(["💻 Configure Computer", "💹 Market Segmentation"])
+    tab1, tab2, tab3 = st.tabs(["💻 Configure Computer", "💹 Market Segmentation", "🔍 Similar Computers"])
     
     # Main content
     with tab1:
@@ -550,8 +553,26 @@ def main():
     
     # Market Segmentation Tab
     with tab2:
-        import market_segmentation
-        market_segmentation.render_market_segmentation_tab()
+        render_market_segmentation_tab()
+        
+    # Similarity Search Tab
+    with tab3:
+        # Create a user_config dictionary based on the current configuration
+        user_config = {
+            'cpu_brand': st.session_state.get('cpu_brand', 'Intel'),
+            'cpu_rating': st.session_state.get('cpu_rating', 5),
+            'ram': st.session_state.get('ram', 8),
+            'storage': st.session_state.get('ssd_capacity', 256),
+            'screen_size': st.session_state.get('screen_size', 15.6),
+            'screen_resolution': st.session_state.get('screen_resolution', 'FHD (1920 x 1080)'),
+            'graphics_card': st.session_state.get('graphics_card', 'Integrated Graphics'),
+            'has_touchscreen': st.session_state.get('touchscreen', False),
+            'weight': st.session_state.get('weight', 2.0),
+            'battery_life': st.session_state.get('battery_life', 8)
+        }
+        
+        # Render the similarity search tab with the current configuration
+        render_similarity_search_tab(user_config)
 
 # Define RAM and SSD options (to be used in the main function)
 ram_options = [4, 8, 16, 32, 64]
