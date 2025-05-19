@@ -243,7 +243,7 @@ def main():
     )
     
     # Create tabs for different app sections
-    tab1, tab2, tab3 = st.tabs(["💻 Configure Computer", "💹 Market Segmentation", "🔍 Similar Computers"])
+    tab1, tab2 = st.tabs(["💻 Configure Computer", "💹 Market Segmentation"])
     
     # Main content
     with tab1:
@@ -396,7 +396,35 @@ def main():
                     value=st.session_state.battery_life,
                     help="Estimated battery life in hours.",
                     key="battery_life"
-                )
+                )            
+        
+            # Add the similarity search section after all the configuration expanders
+            st.markdown("---")
+            st.subheader("🔍 Similar Computers to Consider")
+            
+            # Display a brief explanation of the similarity search functionality
+            st.markdown(
+                """These are comparable commercial computer models that match your configuration. 
+                Similarity is computed using the k-Nearest Neighbors algorithm based on hardware specifications."""
+            )
+            
+            # Create a user_config dictionary based on the current configuration
+            user_config = {
+                'cpu_brand': cpu_brand,
+                'cpu_rating': cpu_rating,
+                'ram': ram,
+                'storage': ssd_capacity,
+                'screen_size': screen_size,
+                'screen_resolution': screen_resolution,
+                'graphics_card': graphics_card,
+                'has_touchscreen': touchscreen,
+                'weight': 2.0,  # Default weight in kg
+                'battery_life': battery_life
+            }
+            
+            # Render the similarity search section with the current configuration
+            from similarity_search import render_similar_computers
+            render_similar_computers(user_config)
         
         # Right Column - Price and Prediction
         with col2:
@@ -554,25 +582,6 @@ def main():
     # Market Segmentation Tab
     with tab2:
         render_market_segmentation_tab()
-        
-    # Similarity Search Tab
-    with tab3:
-        # Create a user_config dictionary based on the current configuration
-        user_config = {
-            'cpu_brand': st.session_state.get('cpu_brand', 'Intel'),
-            'cpu_rating': st.session_state.get('cpu_rating', 5),
-            'ram': st.session_state.get('ram', 8),
-            'storage': st.session_state.get('ssd_capacity', 256),
-            'screen_size': st.session_state.get('screen_size', 15.6),
-            'screen_resolution': st.session_state.get('screen_resolution', 'FHD (1920 x 1080)'),
-            'graphics_card': st.session_state.get('graphics_card', 'Integrated Graphics'),
-            'has_touchscreen': st.session_state.get('touchscreen', False),
-            'weight': st.session_state.get('weight', 2.0),
-            'battery_life': st.session_state.get('battery_life', 8)
-        }
-        
-        # Render the similarity search tab with the current configuration
-        render_similarity_search_tab(user_config)
 
 # Define RAM and SSD options (to be used in the main function)
 ram_options = [4, 8, 16, 32, 64]

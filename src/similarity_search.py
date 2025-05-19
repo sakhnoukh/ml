@@ -83,46 +83,93 @@ def find_similar_computers(config_dict: Dict, top_n: int = 5) -> pd.DataFrame:
     
     computers_df = pd.read_csv(computers_df_path)
     
+    # Handle brand matching specifically for Apple
+    is_apple_cpu = config_dict.get('cpu_brand', '').lower() == 'apple'
+    
+    # If user selected an Apple CPU, prioritize MacBooks
+    if is_apple_cpu:
+        # Filter to only Apple products first
+        apple_computers = computers_df[computers_df['brand'] == 'Apple']
+        
+        # If we have Apple products in our database
+        if not apple_computers.empty:
+            # We'll still do similarity matching, but only within Apple products
+            top_apple_matches = find_similar_within_subset(config_dict, apple_computers, min(top_n, len(apple_computers)))
+            
+            # If we need more results to meet the requested top_n, get non-Apple alternatives
+            if len(top_apple_matches) < top_n:
+                non_apple_computers = computers_df[computers_df['brand'] != 'Apple']
+                remaining_matches = find_similar_within_subset(
+                    config_dict, 
+                    non_apple_computers, 
+                    top_n - len(top_apple_matches)
+                )
+                # Combine the results, with Apple matches first
+                return pd.concat([top_apple_matches, remaining_matches])
+            
+            # We have enough Apple matches
+            return top_apple_matches
+    
+    # For non-Apple or if no Apple products are found, use the standard approach
+    return find_similar_within_subset(config_dict, computers_df, top_n)
+
+
+def find_similar_within_subset(config_dict: Dict, computers_subset: pd.DataFrame, top_n: int = 5) -> pd.DataFrame:
+    """
+    Find similar configurations within a specific subset of computers (e.g., only Apple products).
+    
+    Args:
+        config_dict: Dictionary with user's computer configuration
+        computers_subset: DataFrame subset to search within
+        top_n: Number of similar configurations to retrieve
+        
+    Returns:
+        DataFrame with similar configurations
+    """
+    if computers_subset.empty or top_n <= 0:
+        return pd.DataFrame()
+    
     # Define features for similarity comparison
     features = ['cpu_rating', 'ram', 'storage', 'screen_size', 'has_dedicated_gpu',
                 'gpu_rating', 'battery_life', 'is_touchscreen', 'weight']
     
     # Ensure all required features exist
-    missing_features = [f for f in features if f not in computers_df.columns]
+    missing_features = [f for f in features if f not in computers_subset.columns]
     if missing_features:
         # Create placeholder features with default values
         for feature in missing_features:
-            computers_df[feature] = 0
+            computers_subset[feature] = 0
     
-    # Load or create feature scaler
-    scaler_path = os.path.join(MODEL_DIR, "similarity_scaler.joblib")
-    if os.path.exists(scaler_path):
-        scaler = joblib.load(scaler_path)
-    else:
-        scaler = StandardScaler()
-        scaler.fit(computers_df[features])
-        # Save for future use
-        os.makedirs(MODEL_DIR, exist_ok=True)
-        joblib.dump(scaler, scaler_path)
+    # Create a scaler specifically for this subset
+    scaler = StandardScaler()
+    scaler.fit(computers_subset[features])
     
     # Scale database features
-    X = scaler.transform(computers_df[features])
+    X = scaler.transform(computers_subset[features])
     
     # Prepare user config
     user_vector = prepare_config_for_similarity(config_dict, scaler)
     
     # Find nearest neighbors
-    nn_model = NearestNeighbors(n_neighbors=min(top_n + 1, len(computers_df)), metric='euclidean')
+    n_neighbors = min(top_n + 1, len(computers_subset))
+    nn_model = NearestNeighbors(n_neighbors=n_neighbors, metric='euclidean')
     nn_model.fit(X)
     
     distances, indices = nn_model.kneighbors(user_vector)
     
-    # Get similar computers (skip first result if it's identical to user config)
-    similar_computers = computers_df.iloc[indices[0][1:top_n+1]]
-    similarity_scores = 1 - (distances[0][1:top_n+1] / distances[0].max())
+    # Get similar computers (use all results as we're already working with a subset)
+    max_idx = min(n_neighbors, len(indices[0]))
+    result_indices = indices[0][:max_idx]
+    result_distances = distances[0][:max_idx]
+    
+    # Normalize distances to similarity scores
+    if len(result_distances) > 0 and result_distances.max() > 0:
+        similarity_scores = 1 - (result_distances / result_distances.max())
+    else:
+        similarity_scores = np.ones(len(result_indices))
     
     # Add similarity score to results
-    similar_computers = similar_computers.copy()
+    similar_computers = computers_subset.iloc[result_indices].copy()
     similar_computers['similarity_score'] = similarity_scores
     
     return similar_computers
@@ -207,15 +254,6 @@ def render_similar_computers(user_config: Dict):
     Args:
         user_config: Dictionary with user's computer configuration
     """
-    st.header("🔍 Similar Configurations")
-    
-    st.markdown("""
-    <div style="padding: 15px; border-radius: 10px; background-color: rgba(255,255,255,0.1);">
-    <h4>Find Alternative Configurations</h4>
-    <p>Discover computers that are similar to your current configuration. 
-    These alternatives may offer different price points or features while still meeting your needs.</p>
-    </div>
-    """, unsafe_allow_html=True)
     
     # Find similar computers
     similar_computers = find_similar_computers(user_config, top_n=5)
@@ -224,146 +262,133 @@ def render_similar_computers(user_config: Dict):
         st.warning("No similar configurations found. Try adjusting your configuration.")
         return
     
-    # Display the similar computers
-    for idx, config in similar_computers.iterrows():
-        similarity = config['similarity_score'] * 100
-        price = config.get('price', "N/A")
-        brand = config.get('brand', "Unknown")
-        model = config.get('model', "Computer")
+    # Display the similar computers using a more compact layout
+    if not similar_computers.empty:
+        # Use columns to display computers side by side
+        cols = st.columns(3)
         
-        # Create a visually appealing card for each similar computer
-        col1, col2 = st.columns([1, 3])
-        
-        with col1:
-            # Similarity score with a circular progress indicator
-            st.markdown(f"""
-            <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-            <div style="position: relative; width: 100px; height: 100px;">
-              <svg width="100" height="100" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="45" fill="none" stroke="#e0e0e0" stroke-width="10"></circle>
-                <circle cx="50" cy="50" r="45" fill="none" stroke="#4CAF50" stroke-width="10" 
-                        stroke-dasharray="283" stroke-dashoffset="{283 - (283 * similarity / 100)}" 
-                        transform="rotate(-90 50 50)"></circle>
-              </svg>
-              <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-                        font-size: 20px; font-weight: bold;">
-                {similarity:.0f}%
-              </div>
-            </div>
-            </div>
-            """, unsafe_allow_html=True)
-        
+        for i, (idx, config) in enumerate(similar_computers.head(3).iterrows()):
+            similarity = config['similarity_score'] * 100
+            price = config.get('price', "N/A")
+            brand = config.get('brand', "Unknown")
+            model = config.get('model', "Computer")
+            
+            with cols[i % 3]:
+                # Create a compact card for each similar computer
+                st.markdown(f"""
+                <div style="padding: 10px; border-radius: 8px; border-left: 4px solid #4CAF50; 
+                         background-color: rgba(255,255,255,0.05); height: 100%;">
+                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                        <div style="flex-grow: 1;"><strong>{brand} {model}</strong></div>
+                        <div style="background-color: #4CAF50; color: white; padding: 3px 8px; 
+                                 border-radius: 12px; font-size: 0.8em; margin-left: 5px;">
+                            {similarity:.0f}% match
+                        </div>
+                    </div>
+                    <p style="margin: 5px 0;"><strong>Price:</strong> €{price if price != 'N/A' else 'N/A'}</p>
+                    <p style="margin: 5px 0; font-size: 0.9em;">
+                        🔄 CPU: {config.get('cpu_rating', 'N/A')}/10 • 
+                        🧠 {config.get('ram', 'N/A')}GB • 
+                        💾 {config.get('storage', 'N/A')}GB
+                    </p>
+                </div>
+                """, unsafe_allow_html=True)
+                
+                # Why this computer is similar - condensed display
+                explanations = calculate_similarity_explanation(user_config, config)
+                if explanations:
+                    with st.expander("Why similar?"):
+                        for explanation in explanations:
+                            st.markdown(f"{explanation['icon']} {explanation['match']}", help=f"Feature: {explanation['feature']}")
+    
+        # Show a "View more" button below the 3 cards
+        col1, col2, col3 = st.columns([1, 1, 1])
         with col2:
-            # Computer details
-            st.markdown(f"""
-            <div style="padding: 15px; border-radius: 10px; border-left: 5px solid #4CAF50; 
-                     background-color: rgba(255,255,255,0.05); margin-bottom: 10px;">
-                <h3>{brand} {model}</h3>
-                <p><strong>Price:</strong> €{price if price != 'N/A' else 'N/A'}</p>
-                <p>
-                    <span style="margin-right: 15px;">🔄 CPU: {config.get('cpu_rating', 'N/A')}/10</span>
-                    <span style="margin-right: 15px;">🧠 RAM: {config.get('ram', 'N/A')}GB</span>
-                    <span style="margin-right: 15px;">💾 Storage: {config.get('storage', 'N/A')}GB</span>
-                    <span>🖥️ Screen: {config.get('screen_size', 'N/A')}"</span>
-                </p>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            # Why this computer is similar
-            explanations = calculate_similarity_explanation(user_config, config)
-            if explanations:
-                with st.expander("Why this is similar?"):
-                    for explanation in explanations:
-                        st.markdown(f"{explanation['icon']} **{explanation['feature']}:** {explanation['match']}")
+            st.button("🔍 View more alternatives", key="view_more_computers")
     
-    # Add a section for comparing user's configuration with the alternatives
-    st.subheader("How Alternatives Compare")
-    
-    try:
-        # Create a radar chart to compare key attributes
-        if not similar_computers.empty:
-            features_to_compare = ['cpu_rating', 'ram', 'storage', 'gpu_rating', 'battery_life']
-            labels = ['CPU Performance', 'RAM', 'Storage', 'GPU Performance', 'Battery Life']
-            
-            # Extract user config values
-            user_values = []
-            for feature in features_to_compare:
-                if feature == 'has_dedicated_gpu':
-                    user_values.append(1 if user_config.get('graphics_card', 'Integrated Graphics') != 'Integrated Graphics' else 0)
-                else:
-                    user_values.append(user_config.get(feature, 0))
-            
-            # Normalize the values for better visualization
-            max_values = [10, 64, 2000, 10, 24]  # Maximum reasonable values for each feature
-            user_values = [min(1.0, user_values[i] / max_values[i]) for i in range(len(user_values))]
-            
-            # Extract top 3 similar computers
-            top_similar = similar_computers.head(3)
-            
-            # Create radar chart data
-            fig, ax = plt.subplots(figsize=(8, 6), subplot_kw=dict(polar=True))
-            
-            # Number of variables
-            N = len(labels)
-            
-            # What will be the angle of each axis in the plot (divide the plot / number of variables)
-            angles = [n / float(N) * 2 * np.pi for n in range(N)]
-            angles += angles[:1]  # Close the loop
-            
-            # Plot for user configuration
-            user_values += user_values[:1]  # Close the loop
-            ax.plot(angles, user_values, linewidth=2, linestyle='solid', label="Your Configuration")
-            ax.fill(angles, user_values, alpha=0.1)
-            
-            # Plot for each similar computer
-            colors = ['#FF9999', '#66B2FF', '#99FF99']
-            for i, (_, config) in enumerate(top_similar.iterrows()):
-                values = []
-                for feature in features_to_compare:
-                    values.append(config.get(feature, 0))
-                
-                # Normalize
-                values = [min(1.0, values[i] / max_values[i]) for i in range(len(values))]
-                values += values[:1]  # Close the loop
-                
-                ax.plot(angles, values, linewidth=2, linestyle='solid', label=f"Alternative {i+1}", 
-                        color=colors[i % len(colors)])
-                ax.fill(angles, values, alpha=0.1, color=colors[i % len(colors)])
-            
-            # Add labels
-            ax.set_xticks(angles[:-1])
-            ax.set_xticklabels(labels)
-            
-            # Remove radial labels
-            ax.set_yticklabels([])
-            
-            # Add legend
-            plt.legend(loc='upper right', bbox_to_anchor=(0.1, 0.1))
-            
-            plt.title('Configuration Comparison', size=15, pad=20)
-            
-            st.pyplot(fig)
-            
-    except Exception as e:
-        st.error(f"Error generating comparison visualization: {e}")
+    # Add a compact comparison section
+    with st.expander("📊 Compare Specifications", expanded=False):
+        st.markdown("See how your configuration compares with similar alternatives")
         
-    # Provide insights about the alternatives
-    st.markdown("### Insights")
-    st.markdown("""
-    - **Price Range**: The alternatives offer price points that may be lower or higher based on different feature combinations.
-    - **Performance Trade-offs**: Some alternatives may offer better performance in specific areas while compromising in others.
-    - **Brand Variations**: Different manufacturers may offer similar specifications at varying price points due to brand premium.
-    """)
+        try:
+            # Create a radar chart to compare key attributes
+            if not similar_computers.empty:
+                features_to_compare = ['cpu_rating', 'ram', 'storage', 'gpu_rating', 'battery_life']
+                labels = ['CPU', 'RAM', 'Storage', 'GPU', 'Battery']
+                
+                # Extract user config values
+                user_values = []
+                for feature in features_to_compare:
+                    if feature == 'has_dedicated_gpu':
+                        user_values.append(1 if user_config.get('graphics_card', 'Integrated Graphics') != 'Integrated Graphics' else 0)
+                    else:
+                        user_values.append(user_config.get(feature, 0))
+                
+                # Normalize the values for better visualization
+                max_values = [10, 64, 2000, 10, 24]  # Maximum reasonable values for each feature
+                user_values = [min(1.0, user_values[i] / max_values[i]) for i in range(len(user_values))]
+                
+                # Extract top 2 similar computers to avoid crowding
+                top_similar = similar_computers.head(2)
+                
+                # Create radar chart data
+                fig, ax = plt.subplots(figsize=(6, 4), subplot_kw=dict(polar=True))
+                
+                # Number of variables
+                N = len(labels)
+                
+                # What will be the angle of each axis in the plot
+                angles = [n / float(N) * 2 * np.pi for n in range(N)]
+                angles += angles[:1]  # Close the loop
+                
+                # Plot for user configuration
+                user_values += user_values[:1]  # Close the loop
+                ax.plot(angles, user_values, linewidth=2, linestyle='solid', label="Your Config.")
+                ax.fill(angles, user_values, alpha=0.1)
+                
+                # Plot for each similar computer
+                colors = ['#FF9999', '#66B2FF']
+                for i, (_, config) in enumerate(top_similar.iterrows()):
+                    values = []
+                    for feature in features_to_compare:
+                        values.append(config.get(feature, 0))
+                    
+                    # Normalize
+                    values = [min(1.0, values[i] / max_values[i]) for i in range(len(values))]
+                    values += values[:1]  # Close the loop
+                    
+                    ax.plot(angles, values, linewidth=2, linestyle='solid', label=f"{config['brand']} {config['model']}", 
+                            color=colors[i % len(colors)])
+                    ax.fill(angles, values, alpha=0.1, color=colors[i % len(colors)])
+                
+                # Add labels
+                ax.set_xticks(angles[:-1])
+                ax.set_xticklabels(labels)
+                
+                # Remove radial labels
+                ax.set_yticklabels([])
+                
+                # Add legend with smaller font
+                plt.legend(loc='upper right', bbox_to_anchor=(0.1, 0.1), fontsize='small')
+                
+                plt.title('Specification Comparison', size=12)
+                plt.tight_layout()
+                
+                st.pyplot(fig)
+                
+                # Explain how similarity is calculated
+                st.info("**How similarity is calculated**: The k-Nearest Neighbors (k-NN) algorithm computes Euclidean distances between feature vectors after normalizing specifications by their typical ranges. CPU rating, RAM, storage, screen size, and GPU capabilities are weighted more heavily in the computation.")
+                
+        except Exception as e:
+            st.error(f"Error generating comparison visualization: {e}")
     
-    # Add a feedback section
-    st.markdown("---")
-    col1, col2, col3 = st.columns([1, 1, 1])
+    # Add a compact feedback section
+    st.write("")
+    col1, col2 = st.columns([1, 1])
     with col1:
-        st.button("👍 These alternatives are helpful", key="helpful_alternatives")
+        st.button("👍 Helpful alternatives", key="helpful_alternatives")
     with col2:
-        st.button("👎 These alternatives aren't relevant", key="irrelevant_alternatives")
-    with col3:
-        st.button("🔄 Show more alternatives", key="more_alternatives")
+        st.button("👎 Not relevant", key="irrelevant_alternatives")
 
 def render_similarity_search_tab(user_config: Dict):
     """
