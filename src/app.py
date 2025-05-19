@@ -544,12 +544,63 @@ def main():
                 'market_segment': segment_name
             })
             
-            # Create and display the simple action bar with just a summary and price
-            action_bar_html = get_simple_bar_html(config_summary, price_range_str)
-            st.markdown(action_bar_html, unsafe_allow_html=True)
+            # --- Streamlit-native feedback bar (star rating + comment) ---
+            st.markdown("---")
+            st.subheader("Feedback")
+            st.write("How would you rate this page? (1 = Poor, 5 = Excellent)")
+
+            if 'feedback_submitted' not in st.session_state:
+                st.session_state['feedback_submitted'] = False
+            if 'star_rating' not in st.session_state:
+                st.session_state['star_rating'] = 0
+
+            # Star rating UI (buttons)
+            star_cols = st.columns(5)
+            for i in range(5):
+                star = '★' if st.session_state['star_rating'] > i else '☆'
+                if star_cols[i].button(star, key=f'star_{i+1}', disabled=st.session_state['feedback_submitted']):
+                    st.session_state['star_rating'] = i+1
+
+            # Show selected rating
+            if st.session_state['star_rating'] > 0:
+                st.write(f"You selected: {'★'*st.session_state['star_rating']}{'☆'*(5-st.session_state['star_rating'])} ({st.session_state['star_rating']})")
+            else:
+                st.warning("Please select a rating by clicking on the stars.")
+
+            comment = st.text_area("Additional comments (optional)", max_chars=500, disabled=st.session_state['feedback_submitted'])
+            submit_btn = st.button("Submit Feedback", disabled=(st.session_state['star_rating'] == 0 or st.session_state['feedback_submitted']))
+            if submit_btn and st.session_state['star_rating'] > 0:
+                log_user_feedback({
+                    'timestamp': pd.Timestamp.now().isoformat(),
+                    'cpu_brand': cpu_brand,
+                    'cpu_rating': cpu_rating,
+                    'ram': ram,
+                    'ssd_capacity': ssd_capacity,
+                    'screen_size': screen_size,
+                    'screen_resolution': screen_resolution,
+                    'graphics_card': graphics_card,
+                    'touchscreen': touchscreen,
+                    'battery_life': battery_life,
+                    'estimated_price': price_range_str,
+                    'market_segment': segment_name,
+                    'rating': st.session_state['star_rating'],
+                    'comment': comment
+                })
+                st.session_state['feedback_submitted'] = True
+                st.success("Thank you for your feedback!")
+            elif submit_btn and st.session_state['star_rating'] == 0:
+                st.warning("Please select a rating before submitting.")
+
+            # Prevent access to Market Segmentation tab until feedback is submitted
+            if not st.session_state['feedback_submitted']:
+                st.session_state['active_tab'] = 0
+                st.warning("You must leave a rating before accessing the Market Segmentation page.")
     
     # Market Segmentation Tab
     with tab2:
+        if not st.session_state.get('feedback_submitted', False):
+            st.warning("You must leave a rating on the previous page before accessing this section.")
+            st.stop()
         import market_segmentation
         market_segmentation.render_market_segmentation_tab()
 
@@ -582,6 +633,18 @@ def log_user_interaction(interaction_data):
     # Write to CSV
     df.to_csv(log_file, mode='a', header=not file_exists, index=False)
 
+def log_user_feedback(feedback_data):
+    """
+    Log user feedback (rating + comment) to a flat file for feedback analysis.
+    Args:
+        feedback_data: Dictionary containing feedback details
+    """
+    logs_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "logs")
+    os.makedirs(logs_dir, exist_ok=True)
+    log_file = os.path.join(logs_dir, "user_feedback.csv")
+    file_exists = os.path.isfile(log_file)
+    df = pd.DataFrame([feedback_data])
+    df.to_csv(log_file, mode='a', header=not file_exists, index=False)
 
 # Run the main function
 if __name__ == "__main__":
