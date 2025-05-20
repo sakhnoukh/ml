@@ -836,12 +836,57 @@ def main():
     
     # Browse Computers Tab
     with tab2:
+        if not st.session_state.get('feedback_submitted', False):
+            st.warning("You must leave a rating on the Price Predictor page before accessing this section.")
+            st.stop()
         render_browse_computers_tab()
-    
+        
+        # --- Streamlit-native feedback bar (star rating + comment) for Browse Computers ---
+        st.markdown("---")
+        st.subheader("Feedback")
+        st.write("How would you rate the Browse Computers page? (1 = Poor, 5 = Excellent)")
+
+        if 'browse_feedback_submitted' not in st.session_state:
+            st.session_state['browse_feedback_submitted'] = False
+        if 'browse_star_rating' not in st.session_state:
+            st.session_state['browse_star_rating'] = 0
+
+        # Star rating UI (buttons)
+        star_cols = st.columns(5)
+        for i in range(5):
+            star = '★' if st.session_state['browse_star_rating'] > i else '☆'
+            if star_cols[i].button(star, key=f'browse_star_{i+1}', disabled=st.session_state['browse_feedback_submitted']):
+                st.session_state['browse_star_rating'] = i+1
+
+        # Show selected rating
+        if st.session_state['browse_star_rating'] > 0:
+            st.write(f"You selected: {'★'*st.session_state['browse_star_rating']}{'☆'*(5-st.session_state['browse_star_rating'])} ({st.session_state['browse_star_rating']})")
+        else:
+            st.warning("Please select a rating by clicking on the stars.")
+
+        comment = st.text_area("Additional comments (optional)", max_chars=500, disabled=st.session_state['browse_feedback_submitted'], key="browse_comment")
+        submit_btn = st.button("Submit Feedback", key="browse_submit_btn", disabled=(st.session_state['browse_star_rating'] == 0 or st.session_state['browse_feedback_submitted']))
+        if submit_btn and st.session_state['browse_star_rating'] > 0:
+            log_user_feedback({
+                'timestamp': pd.Timestamp.now().isoformat(),
+                'page': 'browse_computers',
+                'rating': st.session_state['browse_star_rating'],
+                'comment': comment
+            })
+            st.session_state['browse_feedback_submitted'] = True
+            st.success("Thank you for your feedback!")
+        elif submit_btn and st.session_state['browse_star_rating'] == 0:
+            st.warning("Please select a rating before submitting.")
+
+        # Prevent access to other tabs until feedback is submitted
+        if not st.session_state['browse_feedback_submitted']:
+            st.session_state['active_tab'] = 1
+            st.warning("Please leave a rating before accessing other sections.")
+
     # Market Segmentation Tab
     with tab3:
-        if not st.session_state.get('feedback_submitted', False):
-            st.warning("You must leave a rating on the previous page before accessing this section.")
+        if not st.session_state.get('browse_feedback_submitted', False):
+            st.warning("You must leave a rating on the Browse Computers page before accessing this section.")
             st.stop()
         render_market_segmentation_tab()
 
