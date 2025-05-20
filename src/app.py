@@ -224,6 +224,213 @@ def calculate_price_directly(specs):
     # Final scaling for the 0-6 scale (with more granularity at high end)
     return base_price_score
 
+# Function to load and prepare computer data
+@st.cache_data
+def load_computer_data():
+    df = pd.read_csv('data/processed_computers.csv')
+    # Convert boolean columns to more readable format
+    df['has_dedicated_gpu'] = df['has_dedicated_gpu'].map({1: 'Yes', 0: 'No'})
+    df['is_touchscreen'] = df['is_touchscreen'].map({1: 'Yes', 0: 'No'})
+    return df
+
+# Function to render the browse computers tab
+def render_browse_computers_tab():
+    st.title("💻 Browse Computers")
+    
+    # Load the data
+    df = load_computer_data()
+    
+    # Create filters in the main content area
+    st.subheader("Filters")
+    
+    # Create columns for filters - categorical on left, numerical on right
+    col1, col2 = st.columns([1, 1])
+    
+    with col1:
+        st.markdown("#### Categorical Filters")
+        # Brand filter
+        selected_brands = st.multiselect(
+            "Brand",
+            options=sorted(df['brand'].unique()),
+            default=[]
+        )
+        
+        # CPU Brand filter
+        selected_cpu_brands = st.multiselect(
+            "CPU Brand",
+            options=sorted(df['cpu_brand'].unique()),
+            default=[]
+        )
+        
+        # RAM filter
+        selected_ram = st.multiselect(
+            "RAM (GB)",
+            options=sorted(df['ram'].unique()),
+            default=[]
+        )
+        
+        # Storage filter
+        selected_storage = st.multiselect(
+            "Storage (GB)",
+            options=sorted(df['storage'].unique()),
+            default=[]
+        )
+        
+        # Screen Resolution filter
+        selected_resolutions = st.multiselect(
+            "Screen Resolution",
+            options=sorted(df['screen_resolution'].unique()),
+            default=[]
+        )
+        
+        # Dedicated GPU filter
+        selected_dedicated_gpu = st.multiselect(
+            "Dedicated GPU",
+            options=sorted(df['has_dedicated_gpu'].unique()),
+            default=[]
+        )
+        
+        # Graphics Card filter
+        selected_graphics_cards = st.multiselect(
+            "Graphics Card",
+            options=sorted(df['graphics_card'].unique()),
+            default=[]
+        )
+        
+        # Touchscreen filter
+        selected_touchscreen = st.multiselect(
+            "Touchscreen",
+            options=sorted(df['is_touchscreen'].unique()),
+            default=[]
+        )
+    
+    with col2:
+        st.markdown("#### Numerical Filters")
+        # CPU Rating range
+        min_cpu_rating = int(df['cpu_rating'].min())
+        max_cpu_rating = int(df['cpu_rating'].max())
+        cpu_rating_range = st.slider(
+            "CPU Rating",
+            min_value=min_cpu_rating,
+            max_value=max_cpu_rating,
+            value=(min_cpu_rating, max_cpu_rating)
+        )
+        
+        # Screen Size range
+        min_screen_size = float(df['screen_size'].min())
+        max_screen_size = float(df['screen_size'].max())
+        screen_size_range = st.slider(
+            "Screen Size (inches)",
+            min_value=min_screen_size,
+            max_value=max_screen_size,
+            value=(min_screen_size, max_screen_size)
+        )
+        
+        # GPU Rating range
+        min_gpu_rating = int(df['gpu_rating'].min())
+        max_gpu_rating = int(df['gpu_rating'].max())
+        gpu_rating_range = st.slider(
+            "GPU Rating",
+            min_value=min_gpu_rating,
+            max_value=max_gpu_rating,
+            value=(min_gpu_rating, max_gpu_rating)
+        )
+        
+        # Battery Life range
+        min_battery_life = int(df['battery_life'].min())
+        max_battery_life = int(df['battery_life'].max())
+        battery_life_range = st.slider(
+            "Battery Life (hours)",
+            min_value=min_battery_life,
+            max_value=max_battery_life,
+            value=(min_battery_life, max_battery_life)
+        )
+        
+        # Weight range
+        min_weight = float(df['weight'].min())
+        max_weight = float(df['weight'].max())
+        weight_range = st.slider(
+            "Weight (kg)",
+            min_value=min_weight,
+            max_value=max_weight,
+            value=(min_weight, max_weight)
+        )
+        
+        # Price range
+        min_price = int(df['price'].min())
+        max_price = int(df['price'].max())
+        price_range = st.slider(
+            "Price (€)",
+            min_value=min_price,
+            max_value=max_price,
+            value=(min_price, max_price)
+        )
+    
+    st.markdown("---")
+    
+    # Apply filters
+    filtered_df = df.copy()
+    
+    if selected_brands:
+        filtered_df = filtered_df[filtered_df['brand'].isin(selected_brands)]
+    if selected_cpu_brands:
+        filtered_df = filtered_df[filtered_df['cpu_brand'].isin(selected_cpu_brands)]
+    if selected_ram:
+        filtered_df = filtered_df[filtered_df['ram'].isin(selected_ram)]
+    if selected_storage:
+        filtered_df = filtered_df[filtered_df['storage'].isin(selected_storage)]
+    if selected_resolutions:
+        filtered_df = filtered_df[filtered_df['screen_resolution'].isin(selected_resolutions)]
+    if selected_dedicated_gpu:
+        filtered_df = filtered_df[filtered_df['has_dedicated_gpu'].isin(selected_dedicated_gpu)]
+    if selected_graphics_cards:
+        filtered_df = filtered_df[filtered_df['graphics_card'].isin(selected_graphics_cards)]
+    if selected_touchscreen:
+        filtered_df = filtered_df[filtered_df['is_touchscreen'].isin(selected_touchscreen)]
+    
+    # Apply range filters
+    filtered_df = filtered_df[
+        (filtered_df['cpu_rating'] >= cpu_rating_range[0]) &
+        (filtered_df['cpu_rating'] <= cpu_rating_range[1]) &
+        (filtered_df['screen_size'] >= screen_size_range[0]) &
+        (filtered_df['screen_size'] <= screen_size_range[1]) &
+        (filtered_df['gpu_rating'] >= gpu_rating_range[0]) &
+        (filtered_df['gpu_rating'] <= gpu_rating_range[1]) &
+        (filtered_df['battery_life'] >= battery_life_range[0]) &
+        (filtered_df['battery_life'] <= battery_life_range[1]) &
+        (filtered_df['weight'] >= weight_range[0]) &
+        (filtered_df['weight'] <= weight_range[1]) &
+        (filtered_df['price'] >= price_range[0]) &
+        (filtered_df['price'] <= price_range[1])
+    ]
+    
+    # Display results count
+    st.write(f"Found {len(filtered_df)} computers matching your criteria")
+    
+    # Display the filtered data
+    st.dataframe(
+        filtered_df,
+        column_config={
+            "brand": "Brand",
+            "model": "Model",
+            "cpu_brand": "CPU Brand",
+            "cpu_rating": st.column_config.NumberColumn("CPU Rating", format="%.1f"),
+            "ram": st.column_config.NumberColumn("RAM (GB)", format="%d"),
+            "storage": st.column_config.NumberColumn("Storage (GB)", format="%d"),
+            "screen_size": st.column_config.NumberColumn("Screen Size (inches)", format="%.1f"),
+            "screen_resolution": "Screen Resolution",
+            "gpu_rating": st.column_config.NumberColumn("GPU Rating", format="%.1f"),
+            "has_dedicated_gpu": "Dedicated GPU",
+            "graphics_card": "Graphics Card",
+            "is_touchscreen": "Touchscreen",
+            "battery_life": st.column_config.NumberColumn("Battery Life (hours)", format="%d"),
+            "weight": st.column_config.NumberColumn("Weight (kg)", format="%.1f"),
+            "price": st.column_config.NumberColumn("Price (€)", format="%d")
+        },
+        hide_index=True,
+        use_container_width=True,
+        height=800
+    )
 
 def main():
     # Sidebar
@@ -243,7 +450,7 @@ def main():
     )
     
     # Create tabs for different app sections
-    tab1, tab2 = st.tabs(["💻 Configure Computer", "💹 Market Segmentation"])
+    tab1, tab2, tab3 = st.tabs(["💻 Price Predictor & Analysis", "🔍 Browse Computers", "💹 Market Segmentation"])
     
     # Main content
     with tab1:
@@ -627,8 +834,12 @@ def main():
                 st.session_state['active_tab'] = 0
                 st.warning("You must leave a rating before accessing the Market Segmentation page.")
     
-    # Market Segmentation Tab
+    # Browse Computers Tab
     with tab2:
+        render_browse_computers_tab()
+    
+    # Market Segmentation Tab
+    with tab3:
         if not st.session_state.get('feedback_submitted', False):
             st.warning("You must leave a rating on the previous page before accessing this section.")
             st.stop()
